@@ -33,7 +33,8 @@ public class CDIModule {
 	public static void bind(ServiceBinder binder) {
     	binder.bind(ObjectProvider.class, CDIObjectProvider.class).withId("CDIObjectProvider");        
     }	
-	public static BeanManager buildBeanManager(Logger log) {		
+	public static BeanManager buildBeanManager(Logger log) {	
+		log.info("buildBeanManager");
 		try {
 			BeanManager beanManager = (BeanManager) new InitialContext().lookup("java:comp/BeanManager");
 			return beanManager;			
@@ -45,12 +46,22 @@ public class CDIModule {
 	public static CDIFactory buildCDIFactory(Logger log, @Local BeanManager beanManager) {		
 		return new CDIFactory(log, beanManager);
 	}	
-	public static void contributeInjectionProvider(
+	
+	@Contribute(InjectionProvider2.class)
+	public static void provideInjectionProvider(
 			OrderedConfiguration<InjectionProvider2> configuration,
 			@Local CDIFactory cdiFactory,
 			ComponentClassCache cache) {
-		configuration.add("CDI", new CDIInjectionProvider(cdiFactory, cache), "after:*,before:Service");
+//		configuration.add("CDI", new CDIInjectionProvider(cdiFactory, cache), "after:*,before:Service");
+		configuration.add("CDI", new CDIInjectionProvider(cdiFactory, cache), "after:InjectionProvider");
 	}
+	
+	public static void contributeMasterObjectProvider(
+			@Local ObjectProvider cdiProvider,
+			OrderedConfiguration<ObjectProvider> configuration) {	
+//		configuration.add("cdiProvider", cdiProvider, "after:Service,after:AnnotationBasedContributions,after:Alias,after:Autobuild");		
+		configuration.add("cdiProvider", cdiProvider, "after:*");	
+	} 
 	
 	@Contribute(ComponentClassTransformWorker2.class)
     public static void provideClassTransformWorkers(
