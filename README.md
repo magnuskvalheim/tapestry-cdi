@@ -19,6 +19,7 @@ Exclude tapestry managed services
 If you have a beans.xml in your tapestry project then cdi could attempt to manage tapestry services. This is undesirable.
 An easy solution exist for WELD. You can exclude classes from scanning. http://docs.jboss.org/weld/reference/1.1.0.Final/en-US/html_single/#d0e5767
 
+<pre>
 <code>
 	&lt;?xml version="1.0"?&gt;
 	&lt;beans xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -31,3 +32,4 @@ An easy solution exist for WELD. You can exclude classes from scanning. http://d
 		&lt;/weld:scan&gt;
 	&lt;/beans&gt;
 </code> 
+</pre>
