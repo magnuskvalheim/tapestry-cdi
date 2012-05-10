@@ -39,12 +39,12 @@ public class CDIInjectionProvider implements InjectionProvider2 {
 		 * Problem: in many cases a tapestry service will qualify as a cdi bean.
 		 * In order to prevent cdi for managing a service that should be provided by tapestry we check if locator has the service.
 		 */
-		try {
-			if(locator.getService(type)!=null)
-				return false;
-		} catch (RuntimeException e) {
-			// TODO: handle exception
-		}
+//		try {
+//			if(locator.getService(type)!=null)
+//				return false;
+//		} catch (RuntimeException e) {
+//			// TODO: handle exception
+//		}
 			
         final Object injectionValue = cdiFactory.get(type);
         

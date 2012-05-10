@@ -54,12 +54,12 @@ public class CDIObjectProvider implements ObjectProvider {
 		 * 
 		 * The MasterObjectProvider will attempt to delegate to locator after all providers has been asked. 
 		 */
-		try {
-			if(locator.getService(objectType)!=null)
-				return null;
-		} catch (RuntimeException e) {
-			// TODO: handle exception
-		}
+//		try {
+//			if(locator.getService(objectType)!=null)
+//				return null;
+//		} catch (RuntimeException e) {
+//			// TODO: handle exception
+//		}
 		
 		return cdiFactory.get(objectType);
 		

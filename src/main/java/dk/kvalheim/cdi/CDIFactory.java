@@ -31,7 +31,7 @@ public class CDIFactory {
 		Set<Bean<?>> beans =  beanManager.getBeans(clazz);
 		if(beans!=null && beans.size()>0) {
 			Bean<T> bean = (Bean<T>) beans.iterator().next();		
-			CreationalContext<T> ctx = beanManager.createCreationalContext(bean);
+			CreationalContext<T> ctx = beanManager.createCreationalContext(bean);			
 			T o = clazz.cast(beanManager.getReference(bean, clazz, ctx)); 
 			log.info("Found and returning: "+clazz.getCanonicalName());
 			return o;	
