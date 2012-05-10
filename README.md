@@ -28,7 +28,7 @@ An easy solution exist for WELD. You can exclude classes from scanning. http://d
 	          http://java.sun.com/xml/ns/javaee http://docs.jboss.org/cdi/beans_1_0.xsd
 	          http://jboss.org/schema/weld/beans http://jboss.org/schema/weld/beans_1_1.xsd"&gt;
 		&lt;weld:scan&gt;
-			<weld:exclude name="com.tapestry.app.**" /&gt;
+			&lt;weld:exclude name="com.tapestry.app.**" /&gt;
 		&lt;/weld:scan&gt;
 	&lt;/beans&gt;
 </code> 
